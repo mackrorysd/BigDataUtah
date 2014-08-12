@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<!--
+    This is a simplified adaptation of search-samples/schema.xml
+    Fields that are not indexed, stored or displayed are not shown
+    Types are mapped to those support by the HBase Bytes class
+-->
+
+<indexer table="tweets">
+
+   <field name="id" value="tweet:id" type="string" />
+   <field name="text" value="tweet:text" type="string" />
+   <field name="created_at" value="tweet:created_at" type="string" />
+
+   <field name="user_name" value="user:user_name" type="string" />
+   <field name="user_screen_name" value="user:user_screen_name" type="string" />
+
+</indexer>

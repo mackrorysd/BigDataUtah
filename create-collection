@@ -1,0 +1,9 @@
+#! /usr/bin/env bash
+
+COLLECTION_NAME=${1}
+
+solrctl instancedir --generate ~/${COLLECTION_NAME}_configs
+cp -f search-samples/schema.xml ~/${COLLECTION_NAME}_configs/conf/
+solrctl instancedir --create ${COLLECTION_NAME} ~/${COLLECTION_NAME}_configs
+solrctl collection --create ${COLLECTION_NAME} -s 1
+

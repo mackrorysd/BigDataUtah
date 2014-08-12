@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+
+  <!-- These properties are the default settings in the Cloudera QuickStart VM -->
+
+  <property>
+    <name>hbase.rest.port</name>
+    <value>8070</value>
+    <description>The port for the HBase REST server.</description>
+  </property>
+
+  <property>
+    <name>hbase.cluster.distributed</name>
+    <value>true</value>
+  </property>
+
+  <property>
+    <name>hbase.rootdir</name>
+    <value>hdfs://quickstart.cloudera:8020/hbase</value>
+  </property>
+
+  <!-- These properties enable replication, as documented by the NGDATA HBase Indexer -->
+  <!-- https://github.com/NGDATA/hbase-indexer/wiki/Installation -->
+
+  <!-- SEP is basically replication, so enable it -->
+  <property>
+    <name>hbase.replication</name>
+    <value>true</value>
+  </property>
+  <!-- Source ratio of 100% makes sure that each SEP consumer is actually
+       used (otherwise, some can sit idle, especially with small clusters) -->
+  <property>
+    <name>replication.source.ratio</name>
+    <value>1.0</value>
+  </property>
+  <!-- Maximum number of hlog entries to replicate in one go. If this is
+       large, and a consumer takes a while to process the events, the
+       HBase rpc call will time out. -->
+  <property>
+    <name>replication.source.nb.capacity</name>
+    <value>1000</value>
+  </property>
+  <!-- A custom replication source that fixes a few things and adds
+       some functionality (doesn't interfere with normal replication
+       usage). -->
+  <property>
+    <name>replication.replicationsource.implementation</name>
+    <value>com.ngdata.sep.impl.SepReplicationSource</value>
+  </property>
+
+</configuration>
